@@ -1,16 +1,17 @@
 import { Card, Image, Text, Badge, Button, Group, ActionIcon, Title, Checkbox } from '@mantine/core';
 import { IconAdjustments } from '@tabler/icons';
 import { useEffect, useState } from 'react';
+import { card, tag } from './states';
 
-function Taglist(){
+function Taglist({tags}:{tags:tag[]}){
   return(
     <Group spacing={"xs"}>
-      <Badge color="pink" variant="light">
-        Hard
+      {
+      tags.map (tag => (
+        <Badge color= {tag.colour} variant="light">
+          {tag.name}
       </Badge>
-      <Badge color="green" variant="light">
-        easy
-      </Badge>
+      ))}
     </Group>
   )
 }
@@ -25,7 +26,7 @@ function NodeOptions () {
     )
 }
 
-export function TaskCard() {
+export function TaskCard({cardState}: {cardState: card}) {
 
     const [timer,setTimer] = useState(0)
 
@@ -36,23 +37,23 @@ export function TaskCard() {
 
         return () => clearInterval(x)
     }, [])
-
-
+  
+  
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder w = {300}>
 
       <div className='flex items-center justify-between'>
-        Clac assignment
+        {cardState.name}
         <Checkbox color = "teal"/>
       </div>
       <Text weight={500} color="dimmed">00:10:23</Text>
 
       <Text size="sm">
-        a bunch of text
+        {cardState.notes}
       </Text>
 
       <Group position="apart">
-        <Taglist/>
+        <Taglist tags={cardState.tags}/>
         
         <NodeOptions/>
       </Group>
