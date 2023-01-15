@@ -5,6 +5,8 @@ export interface card{
     notes: string;
     timeElapsed: number;
     dueDate: Date | null;
+    dueTime: Date | null;
+    countdown: string;
     status: "active" | "break" | "completed" | "inactive";
     tags: tag[];
     estimatedTime: number;

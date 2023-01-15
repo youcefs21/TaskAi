@@ -1,5 +1,5 @@
 import { ActionIcon, Button, Input, Modal, MultiSelect } from "@mantine/core";
-import { DatePicker } from "@mantine/dates";
+import { DatePicker, TimeInput } from "@mantine/dates";
 import { IconAt, IconLetterT, IconPlus} from "@tabler/icons";
 import { useState } from "react";
 import {TaskCard} from "./card";
@@ -18,7 +18,9 @@ const initCard:card = {
     dueDate: null,
     status:"inactive",
     tags: [],
-    estimatedTime: 0
+    estimatedTime: 0,
+    countdown: "00:00:00",
+    dueTime: null
 }
 
 export function NewTaskModal ({opened, setOpened, addCard}:props) {
@@ -39,10 +41,16 @@ export function NewTaskModal ({opened, setOpened, addCard}:props) {
                     />
                     </Input.Wrapper>
         
-                    <DatePicker 
-                    placeholder="Pick date" label="Due Date" withAsterisk
-                    onChange = {(e) => setNewCard({...newCard, dueDate: e})} 
-                    />
+                    <div className="grid grid-cols-2">
+                        <DatePicker 
+                        placeholder="Pick date" label="Due Date" withAsterisk
+                        onChange = {(e) => setNewCard({...newCard, dueDate: e})} 
+                        />
+                        <TimeInput
+                        placeholder="pick time" label="time" withAsterisk
+                        onChange={(e) => setNewCard({...newCard, dueTime: e})}/>
+                    </div>
+
                     <Input.Wrapper label="Notes">
                     <Input
                         icon={<IconLetterT size = {15}/>}

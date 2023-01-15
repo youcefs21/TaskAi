@@ -28,15 +28,6 @@ function NodeOptions () {
 
 export function TaskCard({cardState}: {cardState: card}) {
 
-    const [timer,setTimer] = useState(0)
-
-    useEffect(() => {
-        const x = setInterval(() => 
-            setTimer(t => t+1),
-        1000)
-
-        return () => clearInterval(x)
-    }, [])
   
   
   return (
@@ -46,7 +37,7 @@ export function TaskCard({cardState}: {cardState: card}) {
         {cardState.name}
         <Checkbox color = "teal"/>
       </div>
-      <Text weight={500} color="dimmed">00:10:23</Text>
+      <Text weight={500} color="dimmed">{cardState.countdown}</Text>
 
       <Text size="sm">
         {cardState.notes}
