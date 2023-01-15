@@ -5,12 +5,6 @@ import { CardContainer } from "../components/cardContainer";
 
 import { api } from "../utils/api";
 
-const links = [
-  {label: "thing", link: "/"},
-  {label: "apple", link: "/apple"},
-  {label: "T3 SPONSOR", link: "/sponsor"},
-]
-
 const Home: NextPage = () => {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
