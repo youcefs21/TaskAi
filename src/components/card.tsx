@@ -40,7 +40,7 @@ export function TaskCard({cardState}: {cardState: card}) {
   
   
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder w = {300}>
+    <Card shadow="sm" p="lg" radius="md" withBorder className={'w-full'}>
 
       <div className='flex items-center justify-between'>
         {cardState.name}
