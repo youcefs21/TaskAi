@@ -4,7 +4,7 @@ import { IconAt, IconLetterT, IconPlus} from "@tabler/icons";
 import { useState } from "react";
 import {TaskCard} from "./card";
 import { NewTaskModal } from "./newTaskModal";
-import { card } from "./states";
+import { card, cardHolder } from "./states";
 
 const cardsInit : card[]= [{   
     name: "Calc Assignment",
@@ -17,7 +17,7 @@ const cardsInit : card[]= [{
 }]
 
 
-export function CardContainer() {
+export function CardContainer({cardHolderState}: {cardHolderState: cardHolder}) {
     const [cards, setCards] = useState<card[]>([]) 
 
     const [opened, setOpened] = useState(false);
@@ -32,7 +32,7 @@ export function CardContainer() {
         <div className="bg-slate-300 flex flex-col w-80 h-full p-4 rounded-2xl overflow-auto">
             <div className={"flex justify-between w-full px-3"}>
                 <h1 className={"font-bold text-xl"}>
-                    Calculus
+                    {cardHolderState.title}
                 </h1>
                 <NewTaskModal opened={opened} setOpened={(x) => setOpened(x)} addCard={addCard}/>
                 <ActionIcon onClick={() => setOpened(true)}>
