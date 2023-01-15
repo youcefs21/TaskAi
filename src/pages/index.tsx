@@ -1,7 +1,8 @@
-import { Tabs } from "@mantine/core";
+import { Group, Tabs } from "@mantine/core";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { CardContainer } from "../components/cardContainer";
+import { NewCardContainer } from "../components/newCardContainer";
 
 import { api } from "../utils/api";
 
@@ -21,8 +22,9 @@ const Home: NextPage = () => {
             <Tabs.Tab value="focus">focus</Tabs.Tab>
         </Tabs.List>
 
-        <Tabs.Panel value="board" pt="xs" className={"w-screen h-full p-10"}>
-            <CardContainer/>
+        <Tabs.Panel value="board" pt="xs" className={"w-screen h-full p-10 flex gap-3"}>
+          <CardContainer/>
+          <NewCardContainer/>
         </Tabs.Panel>
     </Tabs>
     </>
