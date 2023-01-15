@@ -43,7 +43,7 @@ export function TaskCard() {
 
       <div className='flex items-center justify-between'>
         Clac assignment
-        <Checkbox color = "teal" />
+        <Checkbox color = "teal"/>
       </div>
       <Text weight={500} color="dimmed">00:10:23</Text>
 
