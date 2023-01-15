@@ -27,7 +27,7 @@ const clockHelper = (d: number) => {
 
 const dayms = (24*60*60*1000)
 
-export function CardContainer({cardHolderState}: {cardHolderState: cardHolder}) {
+export function CardContainer({cardHolderState, bigAddCard}: {cardHolderState: cardHolder, bigAddCard: (x: card) => void}) {
     const [cards, setCards] = useState<card[]>([]) 
     const [opened, setOpened] = useState(false);
 
@@ -58,14 +58,14 @@ export function CardContainer({cardHolderState}: {cardHolderState: cardHolder}) 
     }, [])
 
     const addCard = (x: card) => {
-        console.log(x)
-        console.log([...cards, x])
+        x = {...x, group:cardHolderState.title}
+        bigAddCard(x)
         setCards([...cards, x])
     }
 
     return(
-        <div className="bg-slate-300 flex flex-col w-80 h-full p-4 rounded-2xl overflow-auto">
-            <div className={"flex justify-between w-full px-3"}>
+        <div className="bg-slate-300 flex flex-col w-80 h-full p-4 rounded-2xl overflow-auto  divide-y divide-slate-700">
+            <div className={"flex justify-between w-full px-3 pb-4"}>
                 <h1 className={"font-bold text-xl"}>
                     {cardHolderState.title}
                 </h1>
@@ -74,8 +74,13 @@ export function CardContainer({cardHolderState}: {cardHolderState: cardHolder}) 
                     <IconPlus size={18} />
                 </ActionIcon>
             </div>
-            {cards.map(card =>
-                <TaskCard cardState = {card}/>)}
+            <div className="pt-4">
+                {cards.map(card =>
+                    <TaskCard cardState = {card} focused={false}/>)}
+                {cards.length == 0 && 
+                <div className="p-3 text-gray-600">this section is empty! click addition button to create a new task</div>
+                }
+            </div>
         </div>
     )
 }

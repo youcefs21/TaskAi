@@ -1,11 +1,12 @@
 import { Group, Tabs } from "@mantine/core";
 import { type NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ActiveCard } from "../components/activeCard";
-import { Board } from "../components/board";
 import { CardContainer } from "../components/cardContainer";
+import { Focus } from "../components/focus";
 import { NewCardContainer } from "../components/newCardContainer";
+import { card, cardHolder } from "../components/states";
 
 import { api } from "../utils/api";
 
@@ -13,6 +14,16 @@ const Home: NextPage = () => {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
   const [activeTab, setActiveTab] = useState<string | null>('board');
+  const [cardHolders, setCardHolders] = useState<cardHolder[]>([]) 
+  const [cards, setCards] = useState<card[]>([])
+
+  const addCardHolder = (x: cardHolder) => {
+      setCardHolders([...cardHolders, x])
+  }
+
+  const addCard = (x: card) => {
+    setCards([...cards, x])
+  }
 
   return (
     <>
@@ -28,10 +39,14 @@ const Home: NextPage = () => {
         </Tabs.List>
 
         <Tabs.Panel value="board" pt="xs" className={activeTab === "board" ? "w-screen h-full p-10 scrollbar scrollbar-none" : ""}>
-          <Board/>
+          <div className="w-fit flex gap-3 overflow-auto h-full p-1">
+              {cardHolders.map(cardHolder => <CardContainer cardHolderState={cardHolder} bigAddCard={addCard}/>)}
+              <NewCardContainer addCardHolder = {addCardHolder}/>
+          </div>
         </Tabs.Panel>
 
-        <Tabs.Panel value="focus" pt="xs" className={activeTab==="focus"?"w-screen h-full p-10 flex gap-3":""}>
+        <Tabs.Panel value="focus" pt="xs" className={activeTab==="focus"?"w-screen h-full overflow-hidden flex":""}>
+          <Focus focusedCardId={0} cards={cards}/>
         </Tabs.Panel>
 
         

@@ -26,12 +26,12 @@ function NodeOptions () {
     )
 }
 
-export function TaskCard({cardState}: {cardState: card}) {
+export function TaskCard({cardState, focused}: {cardState: card, focused: boolean}) {
 
   
   
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder className={'w-full'}>
+    <Card shadow="sm" p="lg" radius="md" withBorder className={`w-full ${focused ? "bg-slate-300" : ""}`}>
 
       <div className='flex items-center justify-between'>
         {cardState.name}

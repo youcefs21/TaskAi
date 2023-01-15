@@ -20,7 +20,8 @@ const initCard:card = {
     tags: [],
     estimatedTime: 0,
     countdown: "00:00:00",
-    dueTime: null
+    dueTime: null,
+    group: ""
 }
 
 export function NewTaskModal ({opened, setOpened, addCard}:props) {

@@ -8,6 +8,7 @@ export interface card{
     dueTime: Date | null;
     countdown: string;
     status: "active" | "break" | "completed" | "inactive";
+    group: string;
     tags: tag[];
     estimatedTime: number;
 } 
