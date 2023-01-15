@@ -3,6 +3,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { ActiveCard } from "../components/activeCard";
+import Image from 'next/image'
 import { CardContainer } from "../components/cardContainer";
 import { Focus } from "../components/focus";
 import { NewCardContainer } from "../components/newCardContainer";
@@ -33,9 +34,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <Tabs variant="outline" defaultValue="board" onTabChange={setActiveTab} className={"w-screen h-screen flex flex-col"}>
-        <Tabs.List className={"flex justify-center"}>
-            <Tabs.Tab value="board">Board</Tabs.Tab>
-            <Tabs.Tab value="focus">focus</Tabs.Tab>
+        <Tabs.List className={"flex justify-between"}>
+            <Image src={"/logo.png"} alt={"A"} width={310/3} height={119/3}/>
+            <div className="flex">
+              <Tabs.Tab value="board">Board</Tabs.Tab>
+              <Tabs.Tab value="focus">focus</Tabs.Tab>
+            </div>
         </Tabs.List>
 
         <Tabs.Panel value="board" pt="xs" className={activeTab === "board" ? "w-screen h-full p-10 scrollbar scrollbar-none" : ""}>
