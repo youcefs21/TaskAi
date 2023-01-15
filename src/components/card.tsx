@@ -39,7 +39,7 @@ export function TaskCard({cardState, focused}: {cardState: card, focused: boolea
       </div>
       <Text weight={500} color="dimmed">{cardState.countdown}</Text>
 
-      <Text size="sm">
+      <Text size="sm" align='left'>
         {cardState.notes}
       </Text>
 

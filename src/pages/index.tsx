@@ -46,7 +46,7 @@ const Home: NextPage = () => {
         </Tabs.Panel>
 
         <Tabs.Panel value="focus" pt="xs" className={activeTab==="focus"?"w-screen h-full overflow-hidden flex":""}>
-          <Focus focusedCardId={0} cards={cards}/>
+          <Focus cards={cards}/>
         </Tabs.Panel>
 
         
