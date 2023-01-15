@@ -18,17 +18,23 @@ const cardsInit : card[]= [{
 
 
 export function CardContainer() {
-    const cards: card[] = cardsInit
+    const [cards, setCards] = useState<card[]>([]) 
 
     const [opened, setOpened] = useState(false);
 
+    const addCard = (x: card) => {
+        console.log(x)
+        console.log([...cards, x])
+        setCards([...cards, x])
+    }
+
     return(
-        <div className="bg-slate-300 flex flex-col w-80 h-full p-4 rounded-2xl">
+        <div className="bg-slate-300 flex flex-col w-80 h-full p-4 rounded-2xl overflow-auto">
             <div className={"flex justify-between w-full px-3"}>
                 <h1 className={"font-bold text-xl"}>
                     Calculus
                 </h1>
-                <NewTaskModal opened={opened} setOpened={(x) => setOpened(x)}/>
+                <NewTaskModal opened={opened} setOpened={(x) => setOpened(x)} addCard={addCard}/>
                 <ActionIcon onClick={() => setOpened(true)}>
                     <IconPlus size={18} />
                 </ActionIcon>

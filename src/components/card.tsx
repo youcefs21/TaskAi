@@ -5,14 +5,14 @@ import { card, tag } from './states';
 
 function Taglist({tags}:{tags:tag[]}){
   return(
-    <Group spacing={"xs"}>
+    <div className='w-[7.77rem] whitespace-nowrap overflow-auto scrollbar scrollbar-none'>
       {
       tags.map (tag => (
         <Badge color= {tag.colour} variant="light">
           {tag.name}
       </Badge>
       ))}
-    </Group>
+    </div>
   )
 }
 

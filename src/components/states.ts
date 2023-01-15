@@ -4,7 +4,7 @@ export interface card{
     name: string;
     notes: string;
     timeElapsed: number;
-    dueDate: Date;
+    dueDate: Date | null;
     status: "active" | "break" | "completed" | "inactive";
     tags: tag[];
     estimatedTime: number;
