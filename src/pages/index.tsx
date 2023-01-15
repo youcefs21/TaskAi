@@ -1,8 +1,16 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { TaskCard } from "../components/card";
+import { CardContainer } from "../components/cardContainer";
+import { OurHeader } from "../components/heading";
 
 import { api } from "../utils/api";
+
+const links = [
+  {label: "thing", link: "/"},
+  {label: "apple", link: "/apple"},
+  {label: "T3 SPONSOR", link: "/sponsor"},
+]
 
 const Home: NextPage = () => {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -15,8 +23,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <OurHeader links={links}/>
         T3 SPONSOR
         <TaskCard/>
+        <CardContainer/>
       </main>
     </>
   );
