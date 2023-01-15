@@ -6,7 +6,7 @@ import {TaskCard} from "./card";
 import { NewTaskModal } from "./newTaskModal";
 import { card, cardHolder } from "./states";
 
-const clockHelper = (d: number) => { 
+export const clockHelper = (d: number) => { 
     d = Math.floor(d / 1000); 
     let s = Math.abs(d % 60); // 1,2...59,0 but I want 0,1...59 
     s -= d < 0 ? 1 : 0; 

@@ -1,12 +1,32 @@
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { TaskCard } from "./card"
-import { CardContainer } from "./cardContainer"
+import { CardContainer, clockHelper } from "./cardContainer"
 import { NewCardContainer } from "./newCardContainer"
 import { card, cardHolder } from "./states"
 
 export function Focus({cards}: {cards: card[]}) {
     const [focusedCardId, setFocusedCardId] = useState(0)
+    const [tick, setTick] = useState(0)
+    const [countdown, setCountdown] = useState("")
+    const [playing, setPlaying] = useState(false)
+
+    useEffect(() => {
+        const i = setInterval(() => {
+            if (playing) setTick(t => t+1000)
+        }, 1000)
+        return () => {
+            clearInterval(i)
+        }
+    }, [focusedCardId, playing])
+
+    useEffect(() => {
+        setCountdown(clockHelper(tick))
+    }, [tick])
+
+    useEffect(() => {
+        setTick(0)
+    }, [focusedCardId])
 
     return(
         <div className="grid grid-cols-3 w-screen h-full p-10">
@@ -16,17 +36,29 @@ export function Focus({cards}: {cards: card[]}) {
                     <h2 className="text-3xl">{cards[focusedCardId]?.name}</h2>
                 </div>
                 <div>
-                    <div className="text-7xl font-mono">
-                        {cards[focusedCardId]?.countdown}
+                    <div className="text-5xl font-mono">
+                        {countdown}
                     </div>
-                    <button className="bg-emerald-500 rounded p-2 h-fit text-white">play</button>
+                    { !playing &&
+                    <button className="bg-emerald-500 rounded p-2 h-fit text-white"
+                            onClick={() => setPlaying(true)}
+                    >
+                        play
+                    </button>
+                    }
+                    { playing &&
+                    <button className="bg-gray-500 rounded p-2 h-fit text-white"
+                            onClick={() => setPlaying(false)}
+                    >
+                        break
+                    </button>
+                    }
                 </div>
                 {cards[focusedCardId]?.notes &&
                     <div>{cards[focusedCardId]?.notes}</div>
                 }
                 <div className="flex justify-center gap-6 text-white">
                     <button className="bg-emerald-500 rounded p-2">Done</button>
-                    <button className="bg-gray-500 rounded p-2">Break</button>
                     <button className="bg-blue-500 rounded p-2">Next</button>
                 </div>
 

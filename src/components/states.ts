@@ -3,6 +3,7 @@
 export interface card{
     name: string;
     notes: string;
+    tick: number;
     timeElapsed: number;
     dueDate: Date | null;
     dueTime: Date | null;

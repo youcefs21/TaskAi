@@ -12,6 +12,7 @@ interface props {
 }
 
 const initCard:card = {
+    tick: 0,
     name:"",
     notes:"",
     timeElapsed:0,
